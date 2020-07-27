@@ -4,9 +4,9 @@
 
 class Population {
 public:
-	int populationSize;
+	int populationSize = 0, generationCount = 0;
 	vector<Individual> individuals;
-	int fittest = 0;
+	Individual fittest, secondFittest;
 
 	Population(int populationSize) {
 		this->populationSize = populationSize;
@@ -22,4 +22,11 @@ public:
 	Individual GetSecondFittest();
 	int GetLeastFittestIndex();
 	void RecalculateFitness();
+
+	void Selection();
+	void Crossover();
+	void Mutation();
+	Individual GetFittestOffspring();
+	void AddFittestOffspring();
+
 };

@@ -7,8 +7,8 @@ using namespace std;
 class Individual {
 public:
     int fitness = 0;
-    int geneLength = 5;
-    int genes[5] = { 0, 0, 0, 0, 0 };
+    int geneLength = 7;
+    int genes[7] = { 0, 0, 0, 0, 0, 0, 0 };
 
     Individual() {
         //cout << "New individual: ";

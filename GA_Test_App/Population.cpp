@@ -4,7 +4,7 @@ using namespace std;
 void Population::Print() {
 	cout << "Printing population: ";
 	for (int i = 0; i < this->populationSize; i++) {
-		for (int j = 0; j < 5; j++) cout << individuals[i].genes[j];
+		for (int j = 0; j < individuals.at(0).geneLength; j++) cout << individuals[i].genes[j];
 		cout << " ";
 	}
 	cout << endl;
@@ -67,3 +67,22 @@ void Population::RecalculateFitness() {
 	}
 }
 
+void Population::Selection() {
+	fittest = GetFittest();
+	secondFittest = GetSecondFittest();
+}
+
+//assign random crossover point CP
+//then take the fittest and second fittest individual
+//and swap their genes indexed 0,1,2...CP
+void Population::Crossover() {
+	//choose a random point up to which all the genes will be swaped
+	int crossoverPoint = rand() % individuals.at(0).geneLength;
+	cout << "Crossover point: " << crossoverPoint << endl;
+
+	for (int i = 0; i < crossoverPoint; i++) {
+		int temp = fittest.genes[i];
+		fittest.genes[i] = secondFittest.genes[i];
+		secondFittest.genes[i] = temp;
+	}
+}
