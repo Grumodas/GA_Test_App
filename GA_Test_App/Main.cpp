@@ -17,5 +17,8 @@ int main() {
 	pop.Crossover();
 	pop.fittest.PrintGenes();
 	pop.secondFittest.PrintGenes();
+	pop.Mutation(30);
+	pop.fittest.PrintGenes();
+	pop.secondFittest.PrintGenes();
 	return 0;
 }

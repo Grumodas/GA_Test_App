@@ -86,3 +86,60 @@ void Population::Crossover() {
 		secondFittest.genes[i] = temp;
 	}
 }
+
+//mutation where a random gene is flipped
+//(mutation *always* occurs)
+void Population::Mutation() {
+	//select which gene will be mutated
+	int mutationPoint = rand() % individuals.at(0).geneLength;
+	cout << "Mutation point: " << mutationPoint << endl;
+
+	if (0 == fittest.genes[mutationPoint]) {
+		fittest.genes[mutationPoint] = 1;
+	} else {
+		fittest.genes[mutationPoint] = 0;
+	}
+
+	if (0 == secondFittest.genes[mutationPoint]) {
+		secondFittest.genes[mutationPoint] = 1;
+	}
+	else {
+		secondFittest.genes[mutationPoint] = 0;
+	}
+}
+
+//we set the probability that each bit
+//will be flipped 
+//(mutation *sometimes* occurs)
+void Population::Mutation(int probability) {
+	//here we use two seperate loops to introduce more randomness
+	int mutationProb;
+
+	for (int i = 0; i < individuals.at(0).geneLength; i++) {
+		mutationProb = rand() % 100;
+
+		if (mutationProb < probability) {
+			cout << "Fittest mutated: " << i << " gene" << endl;
+			if (1 == fittest.genes[i]) {
+				fittest.genes[i] = 0;
+			} else {
+				fittest.genes[i] = 1;
+			}
+		}
+	}
+
+	for (int i = 0; i < individuals.at(0).geneLength; i++) {
+		mutationProb = rand() % 100;
+
+		if (mutationProb < probability) {
+			cout << "Second fittest mutated: " << i << " gene" << endl;
+			if (1 == secondFittest.genes[i]) {
+				secondFittest.genes[i] = 0;
+			}
+			else {
+				secondFittest.genes[i] = 1;
+			}
+		}
+	}
+
+}

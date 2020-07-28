@@ -25,7 +25,15 @@ public:
 
 	void Selection();
 	void Crossover();
+
+	//mutation where a random gene is flipped
+	//(mutation *always* occurs)
 	void Mutation();
+
+	//mutation where a random gene is flipped
+	//(mutation *always* occurs)	
+	void Mutation(int probability);
+
 	Individual GetFittestOffspring();
 	void AddFittestOffspring();
 
