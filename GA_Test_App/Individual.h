@@ -22,4 +22,5 @@ public:
 
     void CalcFitness();
     void PrintGenes();
+    string ToString();
 };

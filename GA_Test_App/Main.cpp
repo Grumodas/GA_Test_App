@@ -11,14 +11,17 @@ int main() {
 	int populationSize = 10;
 	Population pop(populationSize);
 	pop.Print();
-	pop.GetFittest().PrintGenes();
-	pop.GetSecondFittest().PrintGenes();
-	pop.Selection();
-	pop.Crossover();
-	pop.fittest.PrintGenes();
-	pop.secondFittest.PrintGenes();
-	pop.Mutation(30);
-	pop.fittest.PrintGenes();
-	pop.secondFittest.PrintGenes();
+	pop.PrintInfo();
+
+	while (pop.fittest.fitness < pop.fittest.geneLength) {
+		pop.Selection();
+		pop.Crossover();
+		pop.Mutation(7);
+		pop.AddFittestOffspring();
+		pop.RecalculateFitness();
+		pop.IncGen();
+		pop.PrintInfo();
+	}
+
 	return 0;
 }

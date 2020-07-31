@@ -15,3 +15,14 @@ void Individual::PrintGenes() {
     }
     cout << endl;
 }
+
+string Individual::ToString() {
+    string genesStr = "";
+
+    for (int i = 0; i < geneLength; i++) {
+        char c = genes[i] + '0';
+        genesStr += c;
+    }
+
+    return genesStr;
+}

@@ -17,11 +17,13 @@ public:
 		}
 	}
 
+	void PrintInfo();
 	void Print();
 	Individual GetFittest();
 	Individual GetSecondFittest();
 	int GetLeastFittestIndex();
 	void RecalculateFitness();
+	void IncGen();
 
 	void Selection();
 	void Crossover();

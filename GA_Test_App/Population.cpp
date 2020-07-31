@@ -78,7 +78,6 @@ void Population::Selection() {
 void Population::Crossover() {
 	//choose a random point up to which all the genes will be swaped
 	int crossoverPoint = rand() % individuals.at(0).geneLength;
-	cout << "Crossover point: " << crossoverPoint << endl;
 
 	for (int i = 0; i < crossoverPoint; i++) {
 		int temp = fittest.genes[i];
@@ -92,7 +91,6 @@ void Population::Crossover() {
 void Population::Mutation() {
 	//select which gene will be mutated
 	int mutationPoint = rand() % individuals.at(0).geneLength;
-	cout << "Mutation point: " << mutationPoint << endl;
 
 	if (0 == fittest.genes[mutationPoint]) {
 		fittest.genes[mutationPoint] = 1;
@@ -119,7 +117,6 @@ void Population::Mutation(int probability) {
 		mutationProb = rand() % 100;
 
 		if (mutationProb < probability) {
-			cout << "Fittest mutated: " << i << " gene" << endl;
 			if (1 == fittest.genes[i]) {
 				fittest.genes[i] = 0;
 			} else {
@@ -132,7 +129,6 @@ void Population::Mutation(int probability) {
 		mutationProb = rand() % 100;
 
 		if (mutationProb < probability) {
-			cout << "Second fittest mutated: " << i << " gene" << endl;
 			if (1 == secondFittest.genes[i]) {
 				secondFittest.genes[i] = 0;
 			}
@@ -142,4 +138,28 @@ void Population::Mutation(int probability) {
 		}
 	}
 
+}
+
+Individual Population::GetFittestOffspring() {
+	if (fittest.fitness > secondFittest.fitness) {
+		return fittest;
+	}
+	return secondFittest;
+}
+
+void Population::AddFittestOffspring() {
+	fittest.CalcFitness();
+	secondFittest.CalcFitness();
+
+	int leastFittestIndex = GetLeastFittestIndex();
+
+	individuals.at(leastFittestIndex) = GetFittestOffspring();
+}
+
+void Population::PrintInfo() {
+	cout << "Generation: " << generationCount << ", Fittest: " << fittest.ToString() << endl;
+}
+
+void Population::IncGen() {
+	generationCount += 1;
 }
